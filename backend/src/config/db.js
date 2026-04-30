@@ -1,11 +1,24 @@
 import mongoose from 'mongoose';
 
+function getMongoUri() {
+    return (
+        process.env.MONGODB_URI ||
+        process.env.MONGODB_URL ||
+        process.env.MONGO_URL ||
+        process.env.DATABASE_URL ||
+        process.env.RAILWAY_MONGODB_URL ||
+        ''
+    );
+}
+
 async function connectDb() {
-    if (!process.env.MONGODB_URI) {
-        throw new Error('MONGODB_URI is required');
+    const mongoUri = getMongoUri();
+
+    if (!mongoUri) {
+        throw new Error('MongoDB connection string is required. Set MONGODB_URI or the Railway MongoDB variable on the backend service.');
     }
 
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(mongoUri);
     console.log('MongoDB connected');
 }
 
