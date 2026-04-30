@@ -99,11 +99,15 @@ Demo users are auto-seeded on backend startup when missing.
 
 1. Create a new Railway service from the `backend` folder.
 2. Add environment variables:
-   - `MONGODB_URI`
-   - `JWT_SECRET`
-   - `CLIENT_URL`
-   - `PORT` can stay managed by Railway
+
+- `MONGODB_URI` or the MongoDB URL variable from your Railway database plugin
+- `JWT_SECRET`
+- `CLIENT_URL`
+- `PORT` can stay managed by Railway
+
 3. Start command: `npm start`
+4. If the backend still crashes with `MONGODB_URI is required`, open the backend service in Railway and confirm the variable exists on the backend service itself, not only on the database service.
+5. Redeploy the backend after saving variables.
 
 ### Frontend on Railway or Vercel
 
