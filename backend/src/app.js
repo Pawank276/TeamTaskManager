@@ -13,6 +13,10 @@ const allowedOrigin = process.env.CLIENT_URL || 'http://localhost:5173';
 app.use(cors({ origin: allowedOrigin, credentials: true }));
 app.use(express.json());
 
+app.get('/', (_req, res) => {
+    res.json({ ok: true, message: 'Team Task Manager API' });
+});
+
 app.get('/api/health', (_req, res) => {
     res.json({ ok: true });
 });
